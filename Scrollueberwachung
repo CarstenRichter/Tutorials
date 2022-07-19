@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beispiel JavaScript automatisch Kopfbereich verkleinern</title>
+<script>
+window.addEventListener("load", function() {
+  let kopfelement = document.getElementsByTagName("header")[0];
+
+  function scrollueberwachung() {
+     let abstandvonoben     = window.pageYOffset;
+     document.getElementById('ylage').innerHTML = abstandvonoben;
+     if (abstandvonoben > 100) {
+        kopfelement.style.height = "30px";	
+     }
+     else {
+        kopfelement.style.height = "120px";				
+     }
+  }
+  window.addEventListener("scroll", scrollueberwachung);
+} );
+</script>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	header {
+		height: 120px;
+		position: fixed;
+		width: 100%;
+		transition: all 0.4s;
+		background-color: orange;
+	}
+	article {
+		height: 2500px;
+		padding-top: 320px;
+		background-color: limegreen;
+	}
+</style>
+</head>
+<body>
+<header id="kopfbereich">
+	Kopfbereich 
+	<span id="ylage">Positionsangabe</span>
+</header>
+<article>
+	Inhalt
+</article>
+</body>
+</html>
