@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    
+  </head>
+  <body>
+<script>
+function fun() {
+    /*Getting the number of text fields*/
+    var no = document.getElementById("idname").value;
+    /*Generating text fields dynamically in the same form itself*/
+    for(var i=0;i<no;i++) {
+        var textfield = document.createElement("input");
+        textfield.type = "text";
+        textfield.value = "";
+        document.getElementById('form').appendChild(textfield);
+    }
+}
+
+</script>
+
+<form id="form">
+    <input type="type" id="idname" oninput="fun()" value="">
+</form>
+
+      </body>
+</html>
