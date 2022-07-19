@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <div id="anzeigeuhrzeit">hier Uhrzeit anzeigen</div>
+  </head>
+  <body>
+<script>
+
+window.addEventListener("load", function() {
+	let uhrzeitanzeige = setInterval(uhrzeitausgabe, 1000);
+	function uhrzeitausgabe() {
+	  let zeitpunkt = new Date();
+	  let uhrzeit = zeitpunkt.toLocaleTimeString();
+	  document.getElementById("anzeigeuhrzeit").innerHTML = uhrzeit;
+	}
+} );
+
+
+</script>
+
+
+      </body>
+</html>
