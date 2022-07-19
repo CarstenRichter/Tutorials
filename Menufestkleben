@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beispiel Menüzeile oben fixieren</title>
+<script>
+window.addEventListener("load", function() {
+  let steuerungselement = document.getElementById("steuerung");
+  let abstandvonoben = steuerungselement.offsetTop;
+  function scrollueberwachung() {
+    let aktuelleYposition = window.pageYOffset;
+	if (aktuelleYposition >= abstandvonoben) {
+		steuerungselement.classList.add("festkleben")
+	} else {
+		steuerungselement.classList.remove("festkleben");
+	}
+	document.getElementById('ylage').innerHTML = abstandvonoben + " / " + aktuelleYposition;
+  }	
+  window.addEventListener("scroll", scrollueberwachung);
+  });
+</script>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	header {
+		height: 120px;
+		background-color: orange;
+	}
+	nav {
+		height: 30px;
+		background-color: limegreen;		
+		line-height: 30px;
+		font-weight: bold;
+	}
+	article {
+		height: 2500px;
+		background-color: lightgrey;
+	}
+    .festkleben {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        opacity: 0.7;
+    }
+    .festkleben + article {
+        padding-top: 30px;
+    }
+</style>
+</head>
+<body>
+<header id="kopfbereich">
+	Kopfbereich 
+</header>
+<nav id="steuerung">
+	Navigation <span id="ylage">Positionsangabe</span>
+</nav>
+<article>
+	Inhalt
+</article>
+</body>
+</html>
