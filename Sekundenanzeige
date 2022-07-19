@@ -1,0 +1,7 @@
+
+let vergangenezeit = 1;
+function sekundenanzeige() {
+	document.write(vergangenezeit + "<br>");
+	vergangenezeit++;
+}
+setInterval(sekundenanzeige, 1000);
