@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Textauswahl durch Nutzer</title>
+</head>
+<body>
+<p>Wenn Sie einen Fehler finden, bitte mitteilen 
+(egal ob Schreibfehler oder inhaltlicher Fehler).
+Danke</p>
+<p>Mit Maus fehlerhafte Stelle markieren und mit mit folgendem Button übernehmen: 
+<input type="button" id="fehleruebertragbutton" value="markierten Text übertragen" onclick="TextauswahlAuslesen();">
+form action="fehlermelder.php" method="post" id="fehlermelder">
+<p>Fehler:<br>
+textarea id="fehlerarea" name="fehlerarea" style="width:100%" rows="5">/textarea>
+</p>
+<p>Verbesserung:<br>
+textarea id="verbesserungsvorschlag" name="verbesserungsvorschlag" style="width:100%" rows="5">/textarea>
+</p>
+<input id="seitenurl" name="seitenurl" type="hidden" size="30" value="">
+<input id="aktion" name="aktion" type="hidden" size="30" value="senden">
+<p>
+<input type="submit" id="fehleruebertragbutton" value="absenden">
+</p>
+/form>
+<script>
+document.getElementById('seitenurl').value = window.location.pathname;
+function TextauswahlAuslesen() {
+    let nutzertextauswahl = "";
+    if (window.getSelection) { 
+        nutzertextauswahl = window.getSelection().toString();
+        // alert("window: " + nutzertextauswahl);
+    } else if (document.getSelection) { 
+        nutzertextauswahl = document.getSelection().toString();
+        // alert("document: " + nutzertextauswahl);
+    } else if (document.selection) { 
+        // Internet Explorer vor der Version 9
+        nutzertextauswahl = document.selection.createRange().toString();
+        // alert("IE alt: " + nutzertextauswahl);
+    }
+    if ( nutzertextauswahl != "") {
+    	document.getElementById('fehlerarea').value=nutzertextauswahl;
+    }
+}
+</script>
+</body>
+</html>
