@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<script>
+window.addEventListener("load", function() {
+var einzufuegendesObjekt = document.createElement("input");
+einzufuegendesObjekt.type = "text";
+einzufuegendesObjekt.value = "Betrag in EUR";
+einzufuegendesObjekt.style.backgroundColor = "#FFFF00";
+einzufuegendesObjekt.name = "Feld";
+einzufuegendesObjekt.id = "Feld";
+einzufuegendesObjekt.class = "Feld";
+var vorhandenesObjekt = document.getElementById("ylage");
+var newlabel = document.createElement("Label");
+    newlabel.setAttribute("for","Feld");
+    newlabel.innerHTML = "Feld: ";
+vorhandenesObjekt.appendChild(newlabel);
+
+
+vorhandenesObjekt.appendChild(einzufuegendesObjekt);
+var Objekt = document.createElement("label");
+Objekt.innerHTML = "something";
+vorhandenesObjekt.appendChild(Objekt);
+
+
+},false);
+</script>
+<style>
+	
+</style>
+</head>
+<body>
+<header id="kopfbereich">
+	Kopfbereich 
+	<span id="ylage">Positionsangabe</span>
+</header>
+<article>
+	Inhalt
+</article>
+</body>
+</html>
