@@ -1,0 +1,188 @@
+<?php
+$betriebssystem[] = "Windows";
+$betriebssystem[] = "Linux";
+$betriebssystem[] = "Solaris";
+$betriebssystem[] = "Mac";
+
+echo "<pre>";
+print_r ( $betriebssystem );
+?>
+
+<?php
+$betriebssystem[] = "Windows"; // wird dann Index 0 zugeteilt
+$betriebssystem[] = "Linux";   // wird dann Index 1 zugeteilt
+$betriebssystem[] = "Solaris"; // wird dann Index 2 zugeteilt
+$betriebssystem[] = "Mac";     // wird dann Index 3 zugeteilt
+
+echo "ich nutze heute mal: ";
+echo $betriebssystem[1];
+?>
+
+<?php
+$betriebssystem = array("Windows", "Linux", "Solaris", "Mac" );
+?>
+
+<?php
+$adresse['vorname']    = "Axel";
+$adresse['nachname']   = "Pratzner";
+$adresse['hausnummer'] = 8;
+$adresse['ort']        = "Tübingen";
+
+echo "<pre>";
+print_r ( $adresse );
+?>
+
+
+<?php
+$betriebssystem[] = "Windows";
+$betriebssystem[] = "Linux";
+$betriebssystem[] = "Solaris";
+
+echo "<p>Im Array befinden sich Einträge: ";
+echo count ($betriebssystem);
+
+$betriebssystem[] = "Mac";
+$betriebssystem[] = "DOS";
+
+echo "<p>Im Array befinden sich Einträge: ";
+echo count ($betriebssystem);
+?>
+
+//Mehdimensionale Array zählen
+<?php
+$betriebssystem[] = "Windows";
+$betriebssystem[] = "Linux";
+$betriebssystem[] = "Solaris";
+
+echo "<p>Im Array befinden sich Einträge: ";
+echo count ($betriebssystem);
+
+$betriebssystem[] = "Mac";
+$betriebssystem[] = "DOS";
+
+echo "<p>Im Array befinden sich Einträge: ";
+echo count ($betriebssystem);
+?>
+
+
+<?php
+$betriebssystem[] = "Windows";
+$betriebssystem[] = "Linux";
+$betriebssystem[] = "Solaris";
+
+$anzahl = count ( $betriebssystem );
+echo "<p>Es gibt $anzahl Einträge</p>";
+echo "<ul>";
+
+for ($x = 0; $x < $anzahl; $x++  )
+{
+    echo "<li>Eintrag von $x ist $betriebssystem[$x] </li>";
+}
+
+echo "</ul>";
+?>
+
+<?php
+$betriebssystem[] = "Windows";
+$betriebssystem[] = "Linux";
+$betriebssystem[] = "Solaris";
+
+echo "<ul>";
+foreach ($betriebssystem as $nr => $os)
+{
+    echo "<li>Betriebsystem mit Index-Nr. $nr ist $os </li>";
+}
+echo "</ul>";
+?>
+
+<?php
+$betriebssystem[] = "Windows";
+$betriebssystem[] = "Linux";
+$betriebssystem[] = "Solaris";
+
+asort ( $betriebssystem );
+
+$anzahl = count ( $betriebssystem );
+echo "Es gibt $anzahl Einträge:";
+echo "<ul>";
+
+for ($x = 0; $x < $anzahl; $x++ )
+{
+    echo "<li>Eintrag von $x ist $betriebssystem[$x] </li>";
+}
+
+echo "<pre>";
+print_r ($betriebssystem );
+?>
+
+//Doppelte Einträge im Array löschen
+<?php
+$betriebssystem[] = "Windows";
+$betriebssystem[] = "Linux";
+$betriebssystem[] = "Solaris";
+$betriebssystem[] = "Linux";
+$betriebssystem[] = "Solaris";
+
+$bs = array_unique ( $betriebssystem );
+
+echo "<pre>";
+print_r ( $bs );
+?>
+
+<?php
+$adresse[0]['vorname']   = "Axel";
+$adresse[0]['nachname']  = "Pratzner";
+
+$adresse[1]['vorname']   = "Sabine";
+$adresse[1]['nachname']  = "Musterfrau";
+
+$adresse[2]['vorname']   = "Fritz";
+$adresse[2]['nachname']  = "Müller";
+
+echo "<pre>";
+print_r ( $adresse );
+?>
+//Zum direkten Ansprechen müssen nun alle Indizes angegeben werden:
+
+echo $adresse['2']['vorname'];
+
+
+//Mehrdimensionale Arrays
+<?php
+$termin[] = array('Datum' => 20221208, 
+                  'Ort'   => "Wangen", 
+                  'Band'  => "cOoL RoCk oPaS");
+
+$termin[] = array('Datum' => 20220311, 
+                  'Ort'   => "Stuttgart", 
+                  'Band'  => "Die Hosenbodenband");
+
+$termin[] = array('Datum' => 20220628, 
+                  'Ort'   => "Tübingen", 
+                  'Band'  => "flying socks");
+
+$termin[] = array('Datum' => 20220628, 
+                  'Ort'   => "Stuttgart", 
+                  'Band'  => "flying socks");
+
+echo "<pre>";
+print_r ( $termin );
+
+foreach ($termin as $nr => $inhalt)
+{
+    $band[$nr]  = strtolower( $inhalt['Band'] );
+    $ort[$nr]   = strtolower( $inhalt['Ort'] );
+    $datum[$nr] = strtolower( $inhalt['Datum'] );
+}
+
+array_multisort($datum, SORT_DESC, $termin);
+
+print_r ( $termin );
+?>
+
+//Array leeren
+<?php
+$betriebssystem[] = "Windows";
+$betriebssystem = array();
+print_r($betriebssystem);
+?>
