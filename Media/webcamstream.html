@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Webcam start/stop</title>
+  <script>
+    let webcamStream;
+
+    function startWebcam() {
+       // request video and audio stream from the user's webcam
+      navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: true
+      }).then((stream) => {
+        let video = document.querySelector('#video');
+        video.srcObject = stream;
+        video.play();
+
+        webcamStream = stream;
+      }).catch((error) => {
+        console.log('navigator.getUserMedia error: ', error);
+      });
+    }
+
+    function stopWebcam() {
+          webcamStream.getTracks()[0].stop(); // audio
+          webcamStream.getTracks()[1].stop(); // video
+    }   
+
+var canvas, ctx;
+
+function init() {
+  // Get the canvas and obtain a context for
+  // drawing in it
+  canvas = document.getElementById("myCanvas");
+  ctx = canvas.getContext('2d');
+}
+
+function snapshot() {
+   // Draws current image from the video element into the canvas
+  ctx.drawImage(video, 0,0, canvas.width, canvas.height);
+        } 
+  </script>
+
+
+
+</head>
+<body onload="init();">
+  <h1>Take a snapshot of the current video stream</h1>
+  Check the CSS and JavaScript tabs. Click on the Start webcam button. 
+   <p>
+  <button onclick="startWebcam();">Start webcam</button>
+  <button onclick="stopWebcam();">Stop webcam</button> 
+     <button onclick="snapshot();">Take a snapshot</button> 
+  </p>
+  <video onclick="snapshot(this);" width=200 height=200 id="video" controls autoplay></video>
+<p>
+
+      Snapshots: <p>
+    <canvas  id="myCanvas" width="200" height="150"></canvas>  
+</body>
+</html>
