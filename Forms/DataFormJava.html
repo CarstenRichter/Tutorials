@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"><head>...</head>
+<body>
+Testing the new date input field.<p>
+Choose a date/time : <input type="date" id="date" /></p>
+<p>
+You picked: <span id="pickedDate"></span>
+</p>
+After you have tried the first example, change the value of the "type" attribute to:
+<ul>
+<li>datetime</li>
+<li>datetime-local</li>
+<li>time</li>
+<li>week</li>
+<li>month</li>
+</ul>
+And see the result.
+<script>
+var field = document.querySelector("#date");
+var result = document.querySelector("#pickedDate");
+field.oninput = function(evt) {
+   var date = this.value;
+   pickedDate.innerHTML = "<b>"+date+"</b>";
+}
+</script>
+</body>
+</html>
