@@ -1,0 +1,551 @@
+<!DOCTYPE HTML>
+<html lang="en">
+ 
+<body>
+ 
+<?php
+echo "Hallo Welt";
+$vorname = "Carsten";
+$nachname = "Richter";
+
+echo $vorname; 
+echo "<br>";
+echo $nachname;
+echo "\"Anführungszeichen\""
+
+echo "Mein Name ist ". $vorname " ". $nachname;
+
+
+date_default_timezone_set('Europe/Berlin');
+echo "<p>heutiges Datum: ". date("d.m.Y");
+echo "<p>heutiges Datum: ". date("d.M.y");
+echo "<p>heutiges Datum: ". date("D d.M.Y H:i:s");
+
+<?php
+echo date("H:i:s", strtotime('+3 hours'));
+?>
+
+echo "<pre>";
+print_r($_SERVER);
+echo "PHP_SELF: ". $_SERVER['PHP_SELF'];
+echo "REMOTE_ADDR: ". $_SERVER['REMOTE_ADDR'];
+?>
+
+
+<?php
+phpinfo();  // allg. Informationen zur PHP-Installation
+?>
+
+
+/*
+echo "Keine Ausgabe"
+*/
+// auch keine Ausgabe
+// bei '' werden die Variablen nicht ausgeführt
+
+<h1>Mischen von HTML und PHP</h1>
+<p>mitten im HTML kann auch <?php echo "<b>PHP</b>"; ?>
+aufgerufen werden!</p>
+<p>Dies kann auch <?php echo "<b>mehrmals</b>"; ?>
+geschehen</p>
+
+
+<?php
+$teilnehmer = 5;
+$teilnehmerinnen = 4;
+
+$ergebnis = $teilnehmer + $teilnehmerinnen;
+
+echo "<p>Ergebnis Teilnehmeranzahl: ". $ergebnis . "</p>";
+echo "<p>Ergebnis Teilnehmeranzahl: $ergebnis</p>";
+echo "<p>Ergebnis Teilnehmeranzahl: ".
+     ($teilnehmer + $teilnehmerinnen) . "</p>";
+
+//
+
+echo bcadd("5","3","2");
+$ergebnis = bcadd("5","3","2");
+
+//
+
+function berechnung(int $a, int $b) { 
+    echo "In der Funktion: ". gettype($b);
+    echo "<br>";
+    echo $a+$b;}
+$wert = "2.7";
+echo "Vor Funktionsaufruf: ". gettype($wert);
+echo "<br>";
+berechnung( 2.3, $wert );
+?>
+
+
+<?php
+// der Variable $aktion bekommt den Wert 3
+$aktion = "3";
+
+// Im Unterschied zu Wertzuweisung wird hier bei
+// if der Abfrage mit doppelten Gleich verglichen!
+// ansonsten erhalten Sie viel Chaos, weil Sie der
+// Variable $aktion dann einen Wert zuweisen, den
+// Sie eigentlich vergleich wollten
+if ( $aktion == "3" )
+{
+    echo "<p>Aktion hat gewünschten Wert 3</p>";
+}
+?>
+
+<?php
+echo "eingetragener Vorname: ". $_GET['vorname'];
+?>
+<form action="formular-m-anzeige.php" method="get" >
+<p>Ihr Vorname:
+<input type="text" name="vorname">
+</p>
+<p>
+<input type="submit" value="absenden">
+</p>
+</form>
+
+
+//
+
+<?php
+echo "eingetragener Vorname: ". $_GET['vorname'];
+$aktion = date("H:i:s");
+echo '
+<form action="formular-m-anzeige.php" method="GET"
+name="Formular1" id="Formular1">
+<p>Ihr Vorname:
+<input type="Text" name="vorname" id="vorname" value="" size="50" maxlength="150" /></p>
+<input type="hidden" name="aktion" id="aktion" value="'. $aktion .'" ></p>
+<p> Absendebutton:
+<input type="Aubmit" name="Button" id="Button" value="absenden" /></p>
+</form>';
+?>
+
+
+
+<?php
+if ( empty ($_GET['vorname']) == TRUE )
+{    echo '
+    <form action="affenformular.php" method="get">
+    <p>Ihr Vorname:
+    <input type="text" name="vorname" size="50">
+    </p>
+    <p>Absendebutton:
+    <input type="submit" value="absenden">
+    </p>
+    </form>
+    ';}
+else
+{ // beliebige Aktion, z. B. E-Mail senden, DB-Eintrag
+    echo "eingetragener Vorname: " . $_GET['vorname'];}
+?>
+
+
+<?php
+// Punkt 1: Abfrage Nachname und Anzahl ausgefüllt?
+if ( $_GET['nachname'] == "" OR $_GET['anzahl'] == "" )
+{
+    // Punkt 2: HTML-Tag für Formular
+    echo '<form action="reservierung.php" method="GET">';
+
+    // Formulareintragungen liegen (noch) nicht vor
+    // Punkt 3: Feld Nachname leer?
+    if ( $_GET['nachname'] == "" )
+    {
+        // Punkt 4: Formular bereits schon mal aufgerufen
+        if ( $_GET['schon_mal_abgesendet'] == "ja" )
+        {
+            // Punkt 5: Fehlermeldung - Feld Nachname ausfüllen
+            echo "<p>Hinweis: Bitte Feld Nachname ausfüllen</p>";
+        }
+    }
+
+    // Punkt 6: Feld "zeichnen" für Nachname
+    echo 'Nachname: ';
+    echo '<input type="text" name="nachname" value="';
+
+    // Punkt 7: ausgabe von eventueller Inhalt von Nachname
+    echo $_GET['nachname'];
+
+    // Punkt 8: Ende vom Formularfeld Nachname
+    echo '" size="20" maxlength="60">';
+
+    // Punkt 9: Test, ob Anzahl leer ist
+    if ( $_GET['anzahl'] == "" )
+    {
+        // Punkt 10: Formular bereits schon mal aufgerufen
+        if ( $_GET['schon_mal_abgesendet'] == "ja" )
+        {
+            // Punkt 11: Fehlermeldung - Feld Anzahl ausfüllen
+            echo "<p>Hinweis: Bitte Feld Anzahl ausfüllen</p>";
+        }
+
+    }
+
+    // Punkt 12: Formularfeld Anzahl zeichnen
+    echo '<p>Anzahl der gewünschten Reservierungen:';
+    echo '<input type="text" name="anzahl" value="';
+
+    // Punkt 13: eventuell vorhandene Werte in Vorgabe (value)
+    echo $_GET['anzahl'];
+
+    // Punkt 14: Abschluss des HTML-Tags
+    echo '" size="4" maxlength="4">';
+
+    // Punkt 15: Feld zur Kontrolle für Zweitaufruf
+    echo '<input type="hidden" name="schon_mal_abgesendet" value="ja">';
+
+    // Punkt 16: Submit-Button zum absenden der Eingaben
+    echo '<br>';
+    echo '<input type="Submit" name="" value="absenden">';
+
+    // Punkt 17: Ende vom Formular
+    echo '</form>';
+
+    echo "<p>Bitte alle Felder ausfüllen</p>";
+    exit;
+
+}
+else
+{
+    // Punkt 18: alle Angaben liegen vor, nun Auswertung
+    echo "<p>Folgende Angaben wurden gemacht</p>";
+
+    echo "<p>Nachname :";
+    echo $_GET['nachname'];
+
+    echo "<p>Anzahl der Reservierungen";
+    echo $_GET['anzahl'];
+
+    // Beispiel: speichern in Datei, Speichern in Datenbank,
+    // E-Mail mit Inhalt versenden ...
+}
+?>
+
+<?php
+echo "<p>eindeutige ID: ". uniqid();
+?>
+<?php
+echo "<p>eindeutige ID: ". substr(uniqid(), 0, 5);
+echo "<p>eindeutige ID: ". md5(uniqid(mt_rand(), true));
+?>
+
+
+
+<?php
+// Lesen der Datei
+$dateinamen = "besucherzaehler.txt";
+$handle = fopen ($dateinamen, "r");
+$inhalt = fread ($handle, filesize ($dateinamen));
+fclose ($handle);
+
+$inhalt = $inhalt + 1;
+echo "<p>bisher <b>$inhalt</b> Besucher hier</p>";
+
+// Schreiben des neuen Wertes
+$handle = fopen ("besucherzaehler.txt", "w");
+fwrite ($handle, $inhalt);
+fclose ($handle);
+
+echo "Wert $inhalt in Datei besucherzaehler.txt geschrieben";
+?>
+
+//
+
+<?php
+$dividend = 33;
+$divisor  = 0;
+function dividieren( $zahl=1, $quotient=1 )
+{
+    if ( $quotient == 0)
+    {
+        echo "<p>Teilen durch 0 nicht möglich</p>";
+    }
+    else
+    {
+        $ergebnis = bcdiv($zahl, $quotient, 2);
+    }
+    return ( $ergebnis );
+}
+$ergebnis = dividieren( $dividend, $divisor );
+echo "Berechnung von $dividend / $divisor = $ergebnis ";
+?>
+
+//
+
+<?php
+if ( isset($_GET['email']) and $_GET['email'] <> "" )
+{
+    // und nun die Daten in eine Datei schreiben
+    // Datei wird zum Schreiben geöffnet
+    $handle = fopen ( "anfragen.txt", "w" );
+
+    // schreiben des Inhaltes von email
+    fwrite ( $handle, $_GET['email'] );
+
+    // Trennzeichen einfügen, damit Auswertung möglich wird
+    fwrite ( $handle, "|" );
+
+    // schreiben des Inhalts von name
+    fwrite ( $handle, $_GET['name'] );
+
+    // Datei schließen
+    fclose ( $handle );
+    echo "Danke - Ihre Daten wurden speichert";
+    // Datei wird nicht weiter ausgeführt
+    exit;
+}
+?>
+<form action="emailerfassung.php" method="get">
+<p>Ihre E-Mail-Adresse<br>
+<input type="Text" name="email"></p>
+<p>Name:<br>
+<input type="Text" name="name"></p>
+<input type="Submit" name="" value="speichern">
+</form>
+
+//
+
+//Dateien auslesen
+<?php
+// Datei öffnen zum lesen und schreiben
+$handle = fopen ("mailadressen.txt", "r");
+
+while ( $inhalt = fgets ($handle, 4096 ))
+{
+  echo "<li> $inhalt ";
+}
+
+fclose($handle);
+?>
+
+
+//Verzeichnis auslesen
+<?php
+// Der Punkt steht für das Verzeichnis, in der auch dieses
+// PHP-Programm gespeichert ist
+$verzeichnis = ".";
+echo "<ol>";
+
+// Test, ob es sich um ein Verzeichnis handelt
+if ( is_dir ( $verzeichnis ))
+{
+    // öffnen des Verzeichnisses
+    if ( $handle = opendir($verzeichnis) )
+    {
+        // einlesen der Verzeichnisses
+        while (($file = readdir($handle)) !== false)
+        {
+            echo "<li>Dateiname: ";
+            echo $file;
+echo "<a href=\"$file\">$file</a> "; //als link (CR)
+
+            echo "<ul><li>Dateityp: ";
+            echo filetype( $file );
+            echo "</li></ul>\n";
+        }
+        closedir($handle);
+    }
+}
+echo "</ol>";
+?>
+
+
+//Variablen checken
+<?php
+if ( $test_variable != (INT) $test_variable )
+{
+    echo "Variable hat falschen Inhalt";
+    echo " - es sind nur ganze Zahlen zulässig";
+}
+?>
+<?php
+is_int()
+is_float()
+is_string()
+is_array()
+is_bool()
+?>
+
+
+<?php
+$a = 10;
+$b = 5;
+
+if ( $a < $b )
+{
+    echo "a ist kleiner als b";
+}
+elseif ($a == $b)
+{
+    echo "a ist gleich b";
+}
+else
+{
+    echo "a ist größer als b";
+}
+?>
+
+
+//
+
+
+//DAten vergleichen
+<?php
+$email = "dagobert@duck.ente";
+
+// Datei öffnen zum Lesen und Schreiben
+$handle = fopen ("mailadressen.txt", "a ");
+
+while ( $inhalt = fgets($handle, 4096))
+{
+  $inhalt = trim ( $inhalt );
+  echo "<li> |". $inhalt ."| </li>";
+  if ( trim ($inhalt) == $email)
+  {
+    echo "E-Mail-Adresse bereits vorhanden";
+    exit;
+  }
+}
+
+fwrite($handle, $email);
+
+// Zeilenumbruch einfügen
+fwrite($handle, "\r\n");
+
+fclose($handle);
+?>
+
+// Email versenden
+<?php
+$empfaenger = "empfaenger@example.com"; // Mailadresse
+$absender   = "absender@example.com";
+$betreff    = "PHP-Mail-Test";
+$mailtext   = "Inhalt einer Mail zum Test von PHP";
+$antwortan  = "antworten_an@example.com";
+
+mail( $empfaenger,
+      $betreff,
+      $mailtext,
+      "From: $absender\nReply-To: $antwortan");
+
+echo "Mail wurde gesendet!";
+?>
+
+//Email mit Umlauten
+<?php
+$empfaenger = "empfaenger@example.com"; // Mailadresse Empfaenger
+$betreff    = "PHP-Mail-Test mit Umlauten";
+$mailtext   = "Inhalt einer Mail zum Test von PHP ";
+$mailtext   .= "mit den deutschen Sonderzeichen öäüß";
+$absender   = "Ich Hier <absender@example.com>";
+
+$headers   = array();
+$headers[] = "MIME-Version: 1.0";
+$headers[] = "Content-type: text/plain; charset=utf-8";
+$headers[] = "From: {$absender}";
+// falls Bcc benötigt wird
+$headers[] = "Bcc: Der Da <mitleser@example.com>";
+$headers[] = "Reply-To: {$absender}";
+$headers[] = "Subject: {$betreff}";
+$headers[] = "X-Mailer: PHP/".phpversion();
+
+mail($empfaenger, $betreff, $mailtext,implode("\r\n",$headers));
+
+echo "E-Mail mit Umlauten wurde gesendet!";
+?>
+
+//HTML Email verrsenden aber besser drauf verzichten
+<?php
+$mailtext = '<html>
+<head>
+    <title>HTML-E-Mail mit PHP erstellen</title>
+</head>
+
+<body>
+
+<h1>HTML-E-Mail mit PHP erstellen</h1>
+
+<p>Diese E-Mail wurde mit PHP und HTML erstellt</p>
+
+<table border="1">
+  <tr>
+    <td>Beschreibung</td>
+    <td>Anzahl Seiten</td>
+  </tr>
+  <tr>
+    <td>PHP lernen mit PHP-Kurs.com</td>
+    <td>über 100</td>
+  </tr>
+</table>
+
+<p>Die meisten HTML-Tags wie <b>fett</b>
+und <i>kursiv</i> stehen zur
+Verfügung</p>
+
+
+</body>
+</html>
+';
+
+$empfaenger = "du@example.com";  // Mailadresse
+$absender   = "ich@example.com";
+$betreff    = "Mail-Test - HTML-E-Mail mit PHP erstellen";
+$antwortan  = "ICH@example.com";
+
+$header  = "MIME-Version: 1.0\r\n";
+$header .= "Content-type: text/html; charset=utf-8\r\n";
+
+$header .= "From: $absender\r\n";
+$header .= "Reply-To: $antwortan\r\n";
+// $header .= "Cc: $cc\r\n";  // falls an CC gesendet werden soll
+$header .= "X-Mailer: PHP ". phpversion();
+
+mail( $empfaenger,
+      $betreff,
+      $mailtext,
+      $header);
+
+echo "Mail wurde gesendet!";
+?>
+
+</body>
+</html>
+
+Modus	engl.	Aktion	Zeiger	erzeugen
+a+	append - anfügen	lesen und schreiben	Ende	Ja
+a	append - anfügen	nur schreiben	Ende	Ja
+w+	write - schreiben	lesen und schreiben	Beginn	Ja
+w	write - schreiben	nur schreiben	Beginn	Ja
+r+	read - lesen	lesen und schreiben	Beginn	Nope
+r	read - lesen	nur lesen	Beginn	Nope
+
+$x = 1;
+
+switch($x) {
+    case 1:
+        echo "Die Zahl ist eins";
+        break;
+    case 2:
+        echo "Die Zahl ist zwei";
+        break;
+    default:
+        echo "Die Zahl ist anders";
+        break;
+}
+
+
+$monat = "Februar";
+
+switch($monat) {
+    case "Dezember":
+    case "Januar":
+    case "Februar":
+        echo "Winter";
+        break;
+    default:
+        echo "andere Jahreszeit";
+        break;
+}
