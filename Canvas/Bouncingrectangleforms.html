@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8"/>
+<title>Fantasyskwadd - Fantasy Battles: The 9th Age</title>
+ <!-- stylesheet -->
+<link rel="stylesheet" href="stylecanvas.css"> 
+<script>
+var canvas, ctx;
+var width, height; 
+var rectanglex = 0
+var incX = 2;
+var size = 20;
+var x=10, y= 10;
+//var colors = ['red', 'blue', 'green'];
+var currentColor = 'red';
+window.onload = init;
+
+
+
+function init() {
+   canvas = document.querySelector("#mycanvas");
+ctx= canvas.getContext('2d');
+width = canvas.width;
+height = canvas.height;
+
+ctx.fillStyle = currentColor;
+
+animationloop();
+
+//setInterval(changecolor, 1000);
+}
+
+
+function animationloop() {
+//clear canvas
+ctx.clearRect(0, 0, width, height);
+ctx.fillRect(x, y, size ,size);
+ctx.strokeRect(x, y, size ,size);
+//move rectangle
+x = x + incX;
+y = y + incX;
+// check collission on left or right
+if(((x+size) > width) || (x <=0)) {
+//cancel move + inverse speed)
+x = x - incX;
+incX = -incX;
+}
+if(((y+size) > height) || (y <=0)) {
+//cancel move + inverse speed)
+y = y - incX;
+incX = -incX;
+}
+
+//animate again at 60 frames/s
+requestAnimationFrame(animationloop);
+}
+
+//function changecolor() {
+//ctx.fillStyle = colors[currentcolor%3];
+//currentcolor += 1;}
+
+function changesize(event) {
+//console.log("size changed")
+size = parseInt(event.target.value);
+document.getElementById("sizeValue").innerHTML =size;
+}
+
+function changelinewidth(event) {
+ctx.lineWidth = parseInt(event.target.value);
+document.getElementById("linewidthValue").innerHTML =ctx.lineWidth;
+}
+
+function changecolor(event) {
+//console.log("size changed")
+ctx.fillStyle = event.target.value;
+}
+</script>
+
+</head>
+    
+<body>
+
+<canvas id="mycanvas" width="1000" height="600">
+Canvas is not supported by your browser...
+</canvas>
+<p>
+<label for "size">Size</label><input id="size" type ="range" min=2 max=40 value=20 oninput="changesize(event)">
+<output id="sizeValue">20</ouput>
+<label for "color">Color</label><input id="color" type ="color" value="#FF0000" oninput="changecolor(event)">
+<label for "linewidth">LineWidth</label><input id="linewidth" type ="range" min=1 max=5 value=3 oninput="changelinewidth(event)">
+<output id="linewidthValue">3</ouput>
+</p>
+
+
+  <details>
+<summary>Footer</summary>
+  <footer> <div> Copyright by CR</div> 
+      <a href="maito:lastgreenknight@gmx.de">Schreibe uns</a>
+    </footer> 
+</details>
+<p><a href="Impressum.html">Impressum</a></p>
+
+
+//<script src="bouncingrectangle.js">
+// script canvas
+</script>
+
+         
+
+</body>
+</html>
