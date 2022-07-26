@@ -1,0 +1,83 @@
+mycanvas {border:1px solid black;}
+p {font-family:auto}
+html, body {background-color:tan; color:black}
+h1 {background-color: lightblue; color:rgb(139,0,0); text-align: center; margin: 0px; padding: 5px; margin-top: -10px}
+h2 {color:midnightblue}
+ul {color:midnightblue; font-family: cursive}
+video {position: absolute;top: 50%; left: 50%; margin: -180px 0 0 -240px;}
+video:hover {transform:rotate(-5deg);}
+
+footer {clear:both} /*damit rechts und links frei ist */
+
+/*summary {display:block;padding:10px;cursor:pointer;font-weight:bold;}
+summary::-webkit-details-marker {color:Red; background:Green;} 
+details[open] summary::-webkit-details-marker {color:orange; background:grey;}
+summary::-webkit-details-marker {display: none}
+summary:after {content: "+";color: black;float: left;font-size: 1.5em;
+font-weight: bold;margin: -5px 5px 0 0;padding: 0;text-align: center; width: 20px;}
+details[open] summary:after {content: "-";color: lightblue;}*/
+
+a:hover {color: red}
+.hidden {visibility:hidden; display: none}
+.updates {list-style-type: none; font-size: 1.4em; font-weight: bold}
+.Zubehör {margin-top:50px; line-height: 0.1em}
+.Argumente {font-size: 0.8em}
+.center {text-align: center}
+table, th, td {border: 1pt solid black}
+table {border-collapse: collapse; width: 20%}
+table.Navigation, th.Navigation, td.Navigation {border: none; background-color: beige}
+table.Navigation {border-collapse: collapse; width: 100%}
+td.Navigation {width: 20%} 
+th {background-color: powderblue; color: black; cursor:pointer}
+tD {color: red; text-align: center}
+th, td {vertical-align: middle; padding: 4px}
+tr:nth-child(3n-1) {background-color: darkgrey}
+tr:nth-child(3n+1) {background-color: lightgrey}
+tr:nth-child(3n) {background-color: grey}
+tr:hover {background-color: white}
+caption {font-size: 1.4em; font-weight: bold; padding: 5px}
+th:nth-child(1) {width: 60%}
+.Startpage {display: flex; flex-flow: row wrap;width: 100%; min-height: 30vh; padding: 1%} /*test in einer Reihe*/
+#Startpage2 {font-size: 1.4em; border: 1pt solid black; border-radius: 10px; box-shadow: 2px 2px 5px 2px grey; margin: 0px; padding: 1%; width:34%;background-color: lightyellow;}
+#Startpage3 {width:38%;padding: 1%;}
+#Startpage4 {width:17%;padding: 1%;margin-left:3%;}
+.active {width:75%;text-align: center}
+.Events {font-size: 1.0em; margin: 20px; width:100%;background-color: darkgrey}
+#Haupt {display: flex;min-height: 30vh; padding: 2px;}
+#Haupt2 {display: flex;min-height: 30vh; padding: 2px;}
+.Quote {margin-left: 300px; margin-right:300px;border: 1pt solid black;padding: 5px;background-color: lightgrey}
+.Erklärung {margin-left: 100px; margin-right:100px;}
+.Skwadd {display: flex;min-height: 30vh; padding: 2px;}
+.People {font-size: 1.0em; margin: 20px; width:100%;background-color: darkgrey}
+
+.Links2 {position: relative; border: 2px solid black; width: 75%;}
+.aside {list-style-type: none;}
+aside {float:right; width: 20%;	position: relative;}
+
+/* Dropdown Button */
+.dropbtn {background-color: blue; color: white; border-radius: 6px; padding: 10px; font-size: 16px; border: none;}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {position: relative; display: inline-block;}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {display: none; position: absolute; background-color: grey;
+  min-width: 160px;  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;}
+
+/* Links inside the dropdown */
+.dropdown-content a {color: black; padding: 12px 16px; text-decoration: none; display: block;}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: lightgrey;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: darkblue;}
+
+
+
+#slides {position: relative;}
+.slide {position: absolute; left: 0; top: 0;width: 100%; height: 100%;opacity: 0; z-index: 1;transition: opacity 1s;}
+.showing {opacity: 1;z-index: 2;}
